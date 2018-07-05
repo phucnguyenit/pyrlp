@@ -7,8 +7,8 @@ from .utils import (Atomic, str_to_bytes, is_integer, ascii_chr,
                     encode_hex, decode_hex)
 from .sedes.binary import Binary as BinaryClass
 from .sedes import big_endian_int, binary
-from .sedes.lists import List, Serializable, is_sedes
-
+from .sedes.lists import List, is_sedes
+from .sedes.serializable import Serializable
 
 if sys.version_info.major == 2:
     from itertools import imap as map
@@ -226,7 +226,6 @@ def decode(rlp, sedes=None, strict=True, **kwargs):
         obj = sedes.deserialize(item, **kwargs)
         if hasattr(obj, '_cached_rlp'):
             obj._cached_rlp = rlp
-            assert not isinstance(obj, Serializable) or not obj.is_mutable()
         return obj
     else:
         return item

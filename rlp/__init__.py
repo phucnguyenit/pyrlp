@@ -19,4 +19,4 @@ from .exceptions import (
     DeserializationError,
 )
 from .lazy import decode_lazy, peek, LazyList
-from .sedes import Serializable, make_immutable, make_mutable
+from .sedes import Serializable, make_immutable
